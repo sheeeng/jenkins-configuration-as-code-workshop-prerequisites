@@ -1,0 +1,24 @@
+
+dn: cn=Acme Superusers,ou=Groups,dc=acme,dc=local
+objectClass: posixGroup
+cn: Acme Superusers
+gidNumber: 5000
+memberUid: superuser
+
+dn: cn=Acme Servicers,ou=Groups,dc=acme,dc=local
+objectclass: posixGroup
+cn: Acme Servicers
+gidnumber: 5001
+memberUid: service
+
+dn: cn=Acme Managers,ou=Groups,dc=acme,dc=local
+objectClass: posixGroup
+cn: Acme Managers
+gidNumber: 5002
+memberUid: manager
+
+dn: cn=Acme Users,ou=Groups,dc=acme,dc=local
+objectClass: posixGroup
+cn: Acme Users
+gidNumber: 5003
+memberUid: user

@@ -1,0 +1,8 @@
+dn: ou=Users,dc=acme,dc=local
+objectClass: organizationalUnit
+objectClass: top
+ou: Users
+
+dn: ou=Groups,dc=acme,dc=local
+objectClass: organizationalUnit
+ou: Groups

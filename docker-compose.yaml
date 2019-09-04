@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:2.176.3
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    depends_on:
+      - slapd
+      - nexus
+
+  nexus:
+    image: sonatype/nexus3:3.18.1
+    ports:
+      - 8081:8081
+    volumes:
+      - nexus_data:/nexus-data
+
+  slapd:
+    build:
+      context: ./slapd
+    ports:
+      - 389:389
+      - 636:636
+
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.8.0
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: slapd
+      PHPLDAPADMIN_HTTPS: 'false'
+    ports:
+      - 8090:80
+    depends_on:
+      - slapd
+
+volumes:
+  jenkins_home:
+  nexus_data:
