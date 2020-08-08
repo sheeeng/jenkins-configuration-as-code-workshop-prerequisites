@@ -12,9 +12,9 @@ This project was tested with Docker Engine release 18.06.0+, which supports Comp
 
 ```console
 $ docker version --format '{{.Server.Version}}'
-19.03.1
+19.03.11
 $ docker-compose version --short
-1.22.0
+1.25.4
 ```
 
 ## Getting Started
@@ -41,7 +41,7 @@ make jenkins
 $ curl --silent --show-error --include localhost:8080 \
     | tr --delete '\r' \
     | sed --quiet --regexp-extended 's/^X-Jenkins: (.*)/\1/p'
-2.176.3
+2.235.3
 ```
 
 ### Nexus
@@ -52,7 +52,7 @@ $ curl --silent --show-error --include localhost:8080 \
 $ curl --silent --show-error --include localhost:8081 \
     | tr --delete '\r' \
     | sed -En 's/^Server: (.*)/\1/p'
-Nexus/3.18.1-01 (OSS)
+Nexus/3.25.1-04 (OSS)
 ```
 
 ### Lightweight Directory Access Protocol (LDAP)
@@ -64,6 +64,13 @@ $ curl --silent --show-error --include localhost:8090 \
     | tr --delete '\r' \
     | sed -En 's/^Server: (.*)/\1/p'
 Apache
+$ curl --silent --show-error --include localhost:8090 \
+    | tail -n +18 \
+    | sed "s/\&nbsp\;//g" \
+    | xmlstarlet sel \
+    -N n="http://www.w3.org/1999/xhtml" \
+    -t -m "//n:div[@id='ajFOOT']" -v . -n
+1.2.5
 ```
 
 Login phpLDAPadmin using the following credentials.

@@ -1,11 +1,11 @@
-FROM debian:10-slim
+FROM docker.io/library/debian:10-slim
 
 # References
 # https://github.com/rackerlabs/dockerstack/blob/master/keystone/openldap/Dockerfile
 # https://github.com/acme/docker-openldap/blob/master/memberUid/Dockerfile
 # https://github.com/larrycai/docker-openldap/blob/master/Dockerfile
 
-LABEL maintainer="Leonard Sheng Sheng Lee <sheeeng@gmail.com>"
+LABEL maintainer="Leonard Sheng Sheng Lee <leonard.sheng.sheng.lee@gmail.com>"
 
 # https://github.com/hadolint/hadolint/wiki/DL4006#correct-code
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -28,8 +28,8 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install \
         --assume-yes \
         --no-install-recommends \
-        ldap-utils=2.4.47+dfsg-3 \
-        slapd=2.4.47+dfsg-3 \
+        ldap-utils \
+        slapd \
     && rm --force --recursive /var/lib/apt/lists/*
 
 # ca-certificates is already the newest version (20190110).
@@ -44,7 +44,7 @@ COPY configurations/*.ldif /tmp/
 # Workaround DL3001 for `service slapd start` Command
 # https://github.com/hadolint/hadolint/wiki/DL3001
 
-RUN mkdir -p /var/ldap/acme \
+RUN mkdir --parents /var/ldap/acme \
     && chown --recursive openldap /var/ldap \
     && /etc/init.d/slapd start \
     && ldapadd -H ldapi:/// -f /tmp/ou.ldif -x -D "cn=admin,dc=acme,dc=local" -w changeit -v \
