@@ -46,8 +46,22 @@ curl --silent --show-error --include localhost:8080 \
 ```
 
 ```text
-2.235.3
+2.249.1
 ```
+
+## Optional: Change Jenkins Administrator Password
+
+- Run `make`. See [Makefile](Makefile) for more information.
+
+- Get the initial uniquely generated administrator password of Nexus.
+
+```bash
+docker exec -it \
+    $(docker ps --filter "name=jenkins_1" --quiet)  \
+    bash -c "cat /var/jenkins_home/secrets/initialAdminPassword"
+```
+
+- Open [http://localhost:8080](http://localhost:8080) to access Jenkins.
 
 ### Nexus
 
@@ -60,8 +74,22 @@ curl --silent --show-error --include localhost:8081 \
 ```
 
 ```text
-Nexus/3.25.1-04 (OSS)
+Nexus/3.27.0-03 (OSS)
 ```
+
+## Optional: Change Nexus Administrator Password
+
+- Run `make`. See [Makefile](Makefile) for more information.
+
+- Get the initial uniquely generated administrator password of Nexus.
+
+```bash
+docker exec -it \
+    $(docker ps --filter "name=nexus" --quiet)  \
+    bash -c "cat /nexus-data/admin.password && echo"
+```
+
+- Open [http://localhost:8081](http://localhost:8081) to access Nexus.
 
 ### Lightweight Directory Access Protocol (LDAP)
 
