@@ -49,7 +49,7 @@ curl --silent --show-error --include localhost:8080 \
 2.249.1
 ```
 
-## Optional: Change Jenkins Administrator Password
+#### Optional: Change Jenkins Administrator Password
 
 - Run `make`. See [Makefile](Makefile) for more information.
 
@@ -77,7 +77,7 @@ curl --silent --show-error --include localhost:8081 \
 Nexus/3.27.0-03 (OSS)
 ```
 
-## Optional: Change Nexus Administrator Password
+#### Optional: Change Nexus Administrator Password
 
 - Run `make`. See [Makefile](Makefile) for more information.
 
